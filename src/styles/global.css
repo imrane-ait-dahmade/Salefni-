@@ -1,0 +1,14 @@
+@import "tailwindcss";
+/* @import "./font.json"; */
+body {
+  @apply bg-black text-white font-sans antialiased  text-black;
+}
+
+#root {
+  @apply max-w-7xl mx-auto p-8 text-center;
+}
+
+.logo {
+  @apply h-24 p-6 transition duration-300 ease-in-out;
+}
+
