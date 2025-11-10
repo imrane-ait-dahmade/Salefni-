@@ -1,5 +1,5 @@
 import  React from "react"
-import Search from "lucide-react" 
+import {Search} from "lucide-react" 
 export default function SearchBar(){
     return (
          <div className="flex-1 flex items-center">
