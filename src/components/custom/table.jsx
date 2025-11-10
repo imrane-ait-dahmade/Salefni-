@@ -21,7 +21,7 @@ const TableHeader = forwardRef(({ children, className = "", ...props }, ref) => 
   return (
     <thead
       ref={ref}
-      className={`border-b bg-gray-50 ${className}`}
+      className={`border-b border-gray-700 bg-gray-900/50 ${className}`}
       {...props}
     >
       {children}
@@ -35,7 +35,7 @@ const TableBody = forwardRef(({ children, className = "", ...props }, ref) => {
   return (
     <tbody
       ref={ref}
-      className={`divide-y divide-gray-200 ${className}`}
+      className={`divide-y divide-gray-700 ${className}`}
       {...props}
     >
       {children}
@@ -49,7 +49,7 @@ const TableFooter = forwardRef(({ children, className = "", ...props }, ref) => 
   return (
     <tfoot
       ref={ref}
-      className={`border-t bg-gray-50 font-medium ${className}`}
+      className={`border-t border-gray-700 bg-gray-900/50 font-medium ${className}`}
       {...props}
     >
       {children}
@@ -63,7 +63,7 @@ const TableRow = forwardRef(({ children, className = "", ...props }, ref) => {
   return (
     <tr
       ref={ref}
-      className={`transition-colors hover:bg-gray-50 ${className}`}
+      className={`transition-colors hover:bg-gray-800/50 ${className}`}
       {...props}
     >
       {children}
@@ -77,7 +77,7 @@ const TableHead = forwardRef(({ children, className = "", ...props }, ref) => {
   return (
     <th
       ref={ref}
-      className={`h-12 px-4 text-left align-middle font-medium text-gray-700 ${className}`}
+      className={`h-12 px-4 text-left align-middle font-medium text-gray-300 ${className}`}
       {...props}
     >
       {children}
@@ -91,7 +91,7 @@ const TableCell = forwardRef(({ children, className = "", ...props }, ref) => {
   return (
     <td
       ref={ref}
-      className={`p-4 align-middle ${className}`}
+      className={`p-4 align-middle text-gray-300 ${className}`}
       {...props}
     >
       {children}
