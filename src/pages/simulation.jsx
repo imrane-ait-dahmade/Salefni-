@@ -2,15 +2,21 @@ import { useState } from "react";
 import Input from "../components/custom/input";
 import Button from "../components/custom/button";
 import Table, { TableHeader, TableBody, TableRow, TableHead, TableCell } from "../components/custom/table";
+import DemandeForm from "../components/DemandeForm";
 
 export default function Simulation() {
     const [formData, setFormData] = useState({
+        typeCredit: "consommation",
+        metier: "",
         capital: "",
         duree: "",
         tauxAnnuel: "",
         tauxAssurance: "",
         fraisFixes: ""
     });
+
+    const [showDemandeForm, setShowDemandeForm] = useState(false);
+    const [demandeSuccess, setDemandeSuccess] = useState(false);
 
     const [results, setResults] = useState(null);
     const [amortissement, setAmortissement] = useState([]);
@@ -122,6 +128,32 @@ export default function Simulation() {
                     <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-700">
                         <h2 className="text-2xl font-semibold text-white mb-6">Vos informations</h2>
                         <form onSubmit={calculerSimulation} className="space-y-4">
+                            <div className="w-full">
+                                <label htmlFor="typeCredit" className="block text-sm font-medium text-gray-300 mb-2">Type de crédit *</label>
+                                <select
+                                    id="typeCredit"
+                                    name="typeCredit"
+                                    value={formData.typeCredit}
+                                    onChange={handleChange}
+                                    className="flex h-10 w-full rounded-md border border-gray-600 bg-gray-800 text-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#00C896] focus:border-transparent transition-all duration-200"
+                                    required
+                                >
+                                    <option value="consommation">Crédit à la consommation</option>
+                                    <option value="auto">Crédit auto</option>
+                                    <option value="immobilier">Crédit immobilier</option>
+                                    <option value="personnel">Crédit personnel</option>
+                                    <option value="travaux">Crédit travaux</option>
+                                </select>
+                            </div>
+                            <Input
+                                label="Votre métier *"
+                                type="text"
+                                name="metier"
+                                placeholder="Ex: Ingénieur, Enseignant..."
+                                value={formData.metier}
+                                onChange={handleChange}
+                                required
+                            />
                             <Input
                                 label="Montant emprunté (€) *"
                                 type="number"
@@ -206,6 +238,11 @@ export default function Simulation() {
                                     <p className="text-lg font-semibold text-white">{results.assuranceMensuelle} €</p>
                                 </div>
                             </div>
+                            <Button
+                                title="Faire une demande de crédit"
+                                style="bg-[#00C896] text-white hover:bg-[#00b085] w-full py-3 mt-6"
+                                fct={() => setShowDemandeForm(true)}
+                            />
                         </div>
                     )}
                 </div>
@@ -239,6 +276,31 @@ export default function Simulation() {
                                     ))}
                                 </TableBody>
                             </Table>
+                        </div>
+                    </div>
+                )}
+
+                {/* Modal Demande de crédit */}
+                {showDemandeForm && (
+                    <DemandeForm
+                        simulationData={formData}
+                        results={results}
+                        onClose={() => setShowDemandeForm(false)}
+                        onSuccess={() => {
+                            setShowDemandeForm(false);
+                            setDemandeSuccess(true);
+                            setTimeout(() => setDemandeSuccess(false), 5000);
+                        }}
+                    />
+                )}
+
+                {/* Message de succès */}
+                {demandeSuccess && (
+                    <div className="fixed bottom-8 right-8 bg-[#00C896] text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 animate-slide-up z-50">
+                        <span className="text-2xl">✓</span>
+                        <div>
+                            <p className="font-semibold">Demande envoyée avec succès !</p>
+                            <p className="text-sm text-gray-100">Votre PDF a été téléchargé</p>
                         </div>
                     </div>
                 )}

@@ -1,3 +1,70 @@
 {
-  "simulations": []
+  "simulations": [
+    {
+      "id": "7832",
+      "date": "2025-11-10T04:51:52.489Z",
+      "donnees": {
+        "typeCredit": "travaux",
+        "metier": "Magna voluptatem dol",
+        "capital": "18",
+        "duree": "18",
+        "tauxAnnuel": "46",
+        "tauxAssurance": "19",
+        "fraisFixes": "72"
+      },
+      "resultats": null
+    }
+  ],
+  "demandes": [
+    {
+      "id": "fa9a",
+      "nom": "Dolor dolore exercit",
+      "prenom": "Sed nulla repellendu",
+      "email": "vipo@mailinator.com",
+      "telephone": "+1 (773) 178-3599",
+      "revenuMensuel": "34",
+      "situationPro": "fonctionnaire",
+      "commentaire": "Qui aute voluptas co",
+      "simulationData": {
+        "typeCredit": "consommation",
+        "metier": "Irure fugiat ex sed ",
+        "capital": "18",
+        "duree": "93",
+        "tauxAnnuel": "78",
+        "tauxAssurance": "14",
+        "fraisFixes": "70"
+      },
+      "results": {
+        "mensualite": "0.69",
+        "mensualiteTotale": "0.98",
+        "assuranceMensuelle": "0.28",
+        "coutTotal": "264.64",
+        "taeg": "81.68",
+        "montantTotal": "282.64"
+      },
+      "statut": "en_attente",
+      "dateCreation": "2025-11-10T04:51:59.053Z",
+      "prioritaire": false,
+      "notes": []
+    }
+  ],
+  "notifications": [
+    {
+      "id": "94c7",
+      "type": "nouvelle_demande",
+      "demandeId": "fa9a",
+      "message": "Nouvelle demande de Dolor dolore exercit Sed nulla repellendu",
+      "date": "2025-11-10T04:51:59.093Z",
+      "lu": false
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@salfni.com",
+      "password": "admin123",
+      "role": "admin",
+      "name": "Administrateur"
+    }
+  ]
 }

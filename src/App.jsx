@@ -1,51 +1,42 @@
-
-import Navbar from './components/custom/navbar.jsx'
-import Button from './components/custom/button.jsx'
-import SearchBar from './components/custom/searchbar.jsx'
-import { useState } from 'react';
-import Form from './components/custom/form.jsx';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Navbar from './components/custom/navbar.jsx';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import Home from './pages/home.jsx';
 import Simulation from './pages/simulation.jsx';
-export default function App() {
-  
-  const [formData, setFormData] = useState({
-    name: '',
-    email: ''
-  });
+import Login from './pages/Login.jsx';
+import AdminDashboard from './pages/AdminDashboard.jsx';
+import DemandeDetail from './pages/DemandeDetail.jsx';
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+function NavbarWrapper() {
+  const location = useLocation();
+  const hideNavbarPaths = ['/login', '/admin'];
+  const shouldHideNavbar = hideNavbarPaths.some(path => location.pathname.startsWith(path));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-  };
-
-  const inputs = [
-    { type: 'text', name: 'name', placeholder: 'Your Name', value: formData.name, onChange: handleChange },
-    { type: 'email', name: 'email', placeholder: 'Your Email', value: formData.email, onChange: handleChange }
-  ];
+  if (shouldHideNavbar) return null;
 
   return (
-    <div className="App">
-       <Router>
-      <Navbar>
-       <Link to="/home" className='hover:text-[#00C896]'>Salfni</Link>
-        <Link to="/simulation" className='hover:text-[#00C896]'>Simulation</Link>
-      </Navbar>
-     
-      
-
-      <Routes>
-        <Route path="/home" element={<Home />} />
-       <Route path='/simulation' element={<Simulation  />} />
-      </Routes>
-    </Router>
-    </div>
+    <Navbar>
+      <Link to="/home" className='hover:text-[#00C896]'>Salfni</Link>
+      <Link to="/simulation" className='hover:text-[#00C896]'>Simulation</Link>
+      <Link to="/login" className='hover:text-[#00C896]'>Admin</Link>
+    </Navbar>
   );
 }
 
-
+export default function App() {
+  return (
+    <div className="App">
+      <Router>
+        <NavbarWrapper />
+        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path='/simulation' element={<Simulation />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/admin/dashboard' element={<AdminDashboard />} />
+          <Route path='/admin/demande/:id' element={<DemandeDetail />} />
+        </Routes>
+      </Router>
+    </div>
+  );
+}
